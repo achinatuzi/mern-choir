@@ -16,7 +16,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/dist/index.js/api/users"
+      "destination": "/"
     }
   ],
   "headers": [
