@@ -31,15 +31,6 @@ mongoose
     console.log("error mongodb");
   });
 
-  app.get(
-    "/",
-
-    asyncHandler(async (req, res) => {
-      const users = await UserModel.find({});
-      res.json(users);
-    })
-  );
-
 
 app.use("/api/seed", seedRouter);
 app.use("/api/users", userRouter);
