@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
-import cors from "cors";
-import express from "express";
+const cors = require('cors');
+const express = require('express');
 import { seedRouter } from "./routers/seedRouter";
 import { eventRouter } from "./routers/eventRouter";
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
-const userRouter = require("./routers/userRouter")
+const userRouter = require("./routers/userRouter");
+import { Request, Response, NextFunction } from "express";
 
 const app = express();
 dotenv.config();
@@ -34,8 +35,7 @@ app.use("/api/seed", seedRouter);
 app.use("/api/users", userRouter);
 app.use("/api/events", eventRouter);
 
-
-app.use(function (req, res, next) {
+app.use(function (req:Request, res:Response, next:NextFunction) {
     //Enabling CORS
     res.setHeader(
       "Access-Control-Allow-Origin",
