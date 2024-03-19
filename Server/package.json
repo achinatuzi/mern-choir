@@ -2,13 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "index.js",
   "scripts": {
-    "dev": " ts-node-dev --respawn --transpile-only --files src/index.ts",
-    "build": "tsc",
-    "lint": "eslint --fix src test",
-    "test": "jest",
-    "vercel-build": "echo hello"
+    "dev": "nodemon index.ts"
   },
   "pre-commit": [
     "ts.check",
