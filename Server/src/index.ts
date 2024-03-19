@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 const cors = require("cors");
 import { seedRouter } from "./routers/seedRouter";
 import { eventRouter } from "./routers/eventRouter";
+import { UserModel } from "./models/userModel";
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const userRouter = require("./routers/userRouter");
+import asyncHandler from "express-async-handler";
 
 const app = express();
 dotenv.config();
@@ -29,6 +31,14 @@ mongoose
     console.log("error mongodb");
   });
 
+  app.get(
+    "/",
+
+    asyncHandler(async (req, res) => {
+      const users = await UserModel.find({});
+      res.json(users);
+    })
+  );
 
 
 app.use("/api/seed", seedRouter);
