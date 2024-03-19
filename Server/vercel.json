@@ -4,7 +4,7 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist/app" }
+      "config": { "distDir": "dist" }
     },
     {
       "src": "dist/index.js",
@@ -13,10 +13,11 @@
     }
   ],
   "routes": [
-    { "handle": "filesystem" },
+     { "handle": "filesystem" },
     {
+      
       "src": "/(.*)",
-      "dest": "dist/index.js",
+      "dest": "/dist",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Credentials": "true",
