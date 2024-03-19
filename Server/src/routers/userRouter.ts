@@ -7,7 +7,7 @@ import multer from "multer";
 import { ImageModel } from "../models/imageModel";
 import path from "path";
 
-export const userRouter = express.Router();
+const userRouter = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -218,3 +218,5 @@ userRouter.put(
     res.status(404).json({ message: "User not found" });
   })
 );
+
+module.exports = userRouter;

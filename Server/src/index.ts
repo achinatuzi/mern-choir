@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 import express from "express";
 import { seedRouter } from "./routers/seedRouter";
-import { userRouter } from "./routers/userRouter";
 import { eventRouter } from "./routers/eventRouter";
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
+const userRouter = require("./routers/userRouter")
 
 const app = express();
 dotenv.config();
