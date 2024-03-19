@@ -12,7 +12,7 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
- "routes": [
+  "routes": [
     {
       "src": "/api/(.*)",
       "headers": { "Cache-Control": "public, max-age=3600" },
