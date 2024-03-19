@@ -14,7 +14,7 @@
   ],
 
   "rewrites": [
-    { "source": "/(.*)", "destination": "/dist", "permanent": false }
+    { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [
     {
