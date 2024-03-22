@@ -3,7 +3,7 @@ import axios from 'axios'
 const apiClient = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "https://choir-mern-backend.vercel.app/"
+      ? "https://mern-choir.vercel.app/"
       : "http://localhost:4000",
   headers: {
     "Content-type": "application/json",

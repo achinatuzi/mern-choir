@@ -93,8 +93,8 @@ const Signup = () => {
       formData.set("file", image);
 
      await axios.post(
-       "http://localhost:4000/api/users/upload",
-      //  "https://choir-mern-backend.vercel.app/api/users/upload",
+       //  "http://localhost:4000/api/users/upload",
+       "https://mern-choir.vercel.app/api/users/upload",
        formData,
        {
          headers: { "Content-Type": "multipart/form-data" },
