@@ -19,45 +19,43 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ 
-  storage: storage, 
-  limits: { 
-    fileSize: 30000000 ,
-     fieldNameSize: 500,
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 30000000,
+    fieldNameSize: 500,
     fieldSize: 30000000,
   },
   fileFilter: (req, file, callback) => {
-      const acceptableExtensions = ['.png', '.jpg', '.jpeg'];
-      if (!(acceptableExtensions.includes(path.extname(file.originalname)))) {
-        return callback(new Error('...'));
-      }}}
- );
+    const acceptableExtensions = [".png", ".jpg", ".jpeg"];
+    if (!acceptableExtensions.includes(path.extname(file.originalname))) {
+      return callback(new Error("..."));
+    }
+  },
+});
 
- userRouter.get(
-   "/",
+userRouter.get(
+  "/",
 
-   asyncHandler(async (req, res) => {
-     const users = await UserModel.find({});
-     res.json(users);
- 
-   })
- );
+  asyncHandler(async (req, res) => {
+    const users = await UserModel.find({});
+    res.json(users);
+  })
+);
 
 userRouter.post(
   "/upload",
   upload.single("image"),
   asyncHandler(async (req, res) => {
     const image = req.body.file;
-        try {
-          const result = await ImageModel.create({ image: image });
-          res.json({ status: "ok", result });
-        } catch (error) {
-          res.json({ status: error });
-        }
+    try {
+      const result = await ImageModel.create({ image: image });
+      res.json({ status: "ok", result });
+    } catch (error) {
+      res.json({ status: error });
+    }
   })
 );
-
-
 
 userRouter.get(
   "/:_id",
@@ -65,7 +63,7 @@ userRouter.get(
     const user = await UserModel.findOne({ _id: req.params._id });
     if (user) {
       res.json(user);
-          console.log(user);
+      console.log(user);
     } else {
       res.status(404).json({ message: "User Not Found" });
     }
@@ -181,6 +179,7 @@ userRouter.put(
         (user.position = req.body.position || user.position),
         (user.post = req.body.post || user.post),
         (user.email = req.body.email || user.email);
+      user.isAdmin = req.body.isAdmin || user.isAdmin;
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
@@ -210,6 +209,7 @@ userRouter.put(
         position: updatedUser.position,
         post: updatedUser.post,
         email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
         token: generateToken(updatedUser),
       });
       return;
