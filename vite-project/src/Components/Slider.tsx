@@ -35,7 +35,7 @@ function Slider() {
       <Carousel.Item interval={2000}>
         <Link to="#">
           <img
-            src="banner5.jpg"
+            src={banner}
             alt="first slide"
             style={{ width: "100%", height: "100%" }}
           />

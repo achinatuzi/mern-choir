@@ -1,5 +1,8 @@
 import { useContext, useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { ImLocation2 } from "react-icons/im";
+import { FcAlarmClock } from "react-icons/fc";
+import { BsCalendarDate } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useGetEventsQuery } from "../hooks/eventHooks";
 import LoadingBox from "../Components/LoadingBox";
@@ -78,13 +81,14 @@ const Events = () => {
                         <div className="w-100">
                           <p>
                             <strong>
+                              <BsCalendarDate style={{ color: "red" }} />
                               {new Date(event.date).toDateString()}
                             </strong>
                           </p>
                         </div>
                         <div className="w-100 d-flex flex-column">
                           <p>
-                            <strong>{event?.theme}</strong>
+                            <strong>{event?.theme.toUpperCase()}</strong>
                           </p>
                           <span
                             style={{
@@ -103,9 +107,16 @@ const Events = () => {
                         <div className="w-100 d-fex fle-column">
                           <span style={{ textAlign: "end" }}>
                             <p>
-                              <strong>{event.time}</strong>
+                              <strong>
+                                <FcAlarmClock style={{ color: "red" }} />
+                                {event.time}
+                              </strong>
                             </p>
-                            <p>{event.venue}</p>
+
+                            <p style={{ fontSize: "18px", marginTop: "-10px" }}>
+                              <ImLocation2 style={{ color: "red" }} />
+                              {event.venue}
+                            </p>
                           </span>
                           {userInfo?.isAdmin && (
                             <Button>

@@ -60,7 +60,7 @@ export class User {
   @prop({ required: [true, "Please Select Your Date of Birth"] })
   public birthMonthDay!: string;
 
-  @prop({ required: [true, "Please Enter Your Mobile Number"],})
+  @prop({ required: [true, "Please Enter Your Mobile Number"] })
   public phone!: string;
 
   @prop({ required: [true, "Please Select Your Gender"] })
@@ -81,15 +81,18 @@ export class User {
 
   @prop({
     required: [true, "Please Enter Your Email"],
-   match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Please fill a valid email address",
+    ],
     unique: true,
-    trim: true
-    
+    trim: true,
   })
   public email!: string;
 
   @prop({ default: false })
   public isAdmin!: boolean;
+
 }
 
 export const UserModel = getModelForClass(User);

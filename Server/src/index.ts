@@ -8,6 +8,7 @@ const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const userRouter = require("./routers/userRouter");
 import asyncHandler from "express-async-handler";
+import { mailRouter } from "./routers/emailRouter";
 
 const app = express();
 dotenv.config();
@@ -35,6 +36,7 @@ mongoose
 app.use("/api/seed", seedRouter);
 app.use("/api/users", userRouter);
 app.use("/api/events", eventRouter);
+app.use("/api/email", mailRouter)
 
 
 const PORT: number = parseInt((process.env.PORT || "4000") as string, 10);
