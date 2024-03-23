@@ -7,7 +7,7 @@ const apiEvent = axios.create({
     //   "Content-type": "application/json",
     // },
     process.env.NODE_ENV === "production"
-      ? "https://mern-choir.vercel.app/"
+      ? "https://mern-choir-backend.vercel.app/"
       : "http://localhost:4000",
   headers: {
     "Content-type": "application/json",
