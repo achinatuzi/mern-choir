@@ -6,6 +6,8 @@ import { FcAlarmClock } from "react-icons/fc";
 import { Helmet } from "react-helmet-async";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
   const [fullname, setFullname] = useState("");
@@ -13,6 +15,7 @@ const ContactUs = () => {
   const [text, setText] = useState("");
 
   const submitHandler = async () => {
+    const navigate = useNavigate();
     try {
       //  await axios.post("http://localhost:4000/api/email", {
       //    name,
@@ -26,9 +29,13 @@ const ContactUs = () => {
           fullname,
           email,
           text,
-
         }
       );
+    
+      toast.success(
+        "Thank you for contacting us, we'll get back to you shortly"
+      );
+      // navigate("/");
     } catch (error) {
       console.log(error);
     }
