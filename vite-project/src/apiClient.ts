@@ -10,10 +10,6 @@ const apiClient = axios.create({
     "Access-Control-Allow-Origin": "*",
     Accept: "application/json",
   },
-  //   process.env.NODE_ENV === "development" ? "http://localhost:4000" : "/",
-  // headers: {
-  //   "Content-type": "application/json",
-  // },
 });
 
 apiClient.interceptors.request.use(
