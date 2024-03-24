@@ -17,6 +17,7 @@ export const ContactHistory = () => {
     <div
       style={{
         backgroundColor: "rgba(220, 220, 220, 0.9)",
+        paddingTop: '15px'
       }}
     >
       <Helmet>
