@@ -38,6 +38,7 @@ export default function Profile() {
 
   const { mutateAsync: updateProfile, isPending } = useUpdateProfileMutation();
 
+
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -72,8 +73,8 @@ export default function Profile() {
       formData.set("file", image);
 
       await axios.post(
-        "http://localhost:4000/api/users/upload",
-        // "https://mern-choir-backend.vercel.app/api/users/upload",
+        // "http://localhost:4000/api/users/upload",
+        "https://mern-choir-backend.vercel.app/api/users/upload",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
