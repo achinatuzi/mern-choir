@@ -50,7 +50,7 @@ export default function Profile() {
 
     const options = {
       maxSizeMB: 2,
-      maxWidthOrHeight: 300,
+      maxWidthOrHeight: 350,
       useWebWorker: true,
     };
     try {
