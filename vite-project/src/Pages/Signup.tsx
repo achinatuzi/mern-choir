@@ -71,7 +71,7 @@ const Signup = () => {
 
     const options = {
       maxSizeMB: 2,
-      maxWidthOrHeight: 500,
+      maxWidthOrHeight: 200,
       useWebWorker: true,
     };
     try {
