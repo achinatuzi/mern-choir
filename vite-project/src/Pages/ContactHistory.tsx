@@ -17,7 +17,7 @@ export const ContactHistory = () => {
     <div
       style={{
         backgroundColor: "rgba(220, 220, 220, 0.9)",
-        paddingTop: '15px'
+        paddingTop: "15px",
       }}
     >
       <Helmet>
@@ -42,31 +42,41 @@ export const ContactHistory = () => {
                 <hr></hr>
                 <div className="d-lg-flex px-4 ">
                   <div className="w-100">
-                    <p>
+                    <span className="d-flex  ">
                       <strong>ID: </strong>
-                      {contact?._id}
-                    </p>
-                    <p>
+                      <p className="bg-success-subtle px-1 ">{contact?._id}</p>
+                    </span>
+                    <span className="d-flex">
                       <strong>NAME: </strong>
-                      {contact?.fullname}
-                    </p>
-                    <p>
+                      <p className="bg-success-subtle px-1 ">
+                        {contact?.fullname}
+                      </p>
+                    </span>
+                    <span className="d-flex">
                       <strong>E-MAIL: </strong>
-                      {contact?.email}
-                    </p>
+                      <p className="bg-success-subtle px-1 ">
+                        {contact?.email}
+                      </p>
+                    </span>
                     <p>
                       <strong>REQUEST: </strong>
                       {contact?.text}
                     </p>
-                    <p>
+                    <span className="d-flex">
                       <strong>DATE: </strong>
-                      {contact.createdAt.substring(0, 10)}
-                    </p>
-                    <span>
+                      <p className="bg-success-subtle px-1 ">
+                        {contact.createdAt.substring(0, 10)}
+                      </p>
+                    </span>
+                    <span className="d-flex">
                       <strong>RESPONDED: </strong>
-                      {contact.isResponded
-                        ? contact.deliveredAt.substring(0, 10)
-                        : <p className="bg-danger ">No</p>}
+                      {contact.isResponded ? (
+                        <p className="bg-success-subtle px-1 ">
+                          {contact.deliveredAt.substring(0, 10)}
+                        </p>
+                      ) : (
+                        <p className="bg-danger text-light px-4 ">No</p>
+                      )}
                     </span>
                     <Button type="button" variant="light" onClick={() => {}}>
                       Respond
