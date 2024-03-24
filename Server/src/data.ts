@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 export const sampleUsers = [
   {
-    image: '/chi.jpg',
+    image: "chi.jpg",
     firstName: "Aldrian",
     slug: "Born to rule",
     surName: "Solomon",
