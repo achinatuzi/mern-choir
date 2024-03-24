@@ -66,7 +66,7 @@ export const ContactHistory = () => {
                       <strong>RESPONDED: </strong>
                       {contact.isResponded
                         ? contact.deliveredAt.substring(0, 10)
-                        : "No"}
+                        : <p className="bg-danger ">No</p>}
                     </p>
                     <Button type="button" variant="light" onClick={() => {}}>
                       Respond
