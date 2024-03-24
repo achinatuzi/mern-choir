@@ -105,7 +105,7 @@ const ContactUs = () => {
                     to="/contactHistory"
                     className="text-decoration-none text-dark text-white "
                   >
-                    CONTACTS FOLDER &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+                    CONTACTS FOLDER &gt;&gt;&gt;
                   </Link>
                 </Button>
               )}

@@ -1,6 +1,5 @@
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
 import LoadingBox from "../Components/LoadingBox";
 import MessageBox from "../Components/MessageBox";
 import { getError } from "../utils";
@@ -9,16 +8,14 @@ import { ApiError } from "../types/ApiError";
 import { useEffect } from "react";
 
 export const ContactHistory = () => {
-  const navigate = useNavigate();
   const { data: contacts, isLoading, error } = useGetContactHistoryQuery();
 
   useEffect(() => {
-window.scroll(0, 0)
-  })
+    window.scroll(0, 0);
+  });
   return (
     <div
       style={{
-        textAlign: "center",
         backgroundColor: "rgba(220, 220, 220, 0.9)",
       }}
     >
@@ -37,45 +34,50 @@ window.scroll(0, 0)
           {getError(error as unknown as ApiError)}
         </MessageBox>
       ) : (
-        <table className="table ">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>DATE</th>
-              <th>NAME</th>
-              <th>E-MAIL</th>
-              <th>RESPONDED</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Row className="d-flex flex-column w-100">
+          <Col className="w-100">
             {contacts?.map((contact) => (
-              <tr key={contact._id}>
-                <td>{contact._id}</td>
-                <td>{contact.createdAt.substring(0, 10)}</td>
-                <td>{contact.fullname}</td>
-                <td>{contact.email}</td>
-                <td>
-                  {contact.isResponded
-                    ? contact.deliveredAt.substring(0, 10)
-                    : "No"}
-                </td>
-                <td>
-                  <Button
-                    type="button"
-                    variant="light"
-                    onClick={() => {
-                      navigate(`/contacts/${contact._id}`);
-                    }}
-                  >
-                    Details
-                  </Button>
-                </td>
-              </tr>
+              <>
+                <hr></hr>
+                <div className="d-lg-flex px-4 ">
+                  <div className="w-100">
+                    <p>
+                      <strong>ID: </strong>
+                      {contact?._id}
+                    </p>
+                    <p>
+                      <strong>NAME: </strong>
+                      {contact?.fullname}
+                    </p>
+                    <p>
+                      <strong>E-MAIL: </strong>
+                      {contact?.email}
+                    </p>
+                    <p>
+                      <strong>REQUEST: </strong>
+                      {contact?.text}
+                    </p>
+                    <p>
+                      <strong>DATE: </strong>
+                      {contact.createdAt.substring(0, 10)}
+                    </p>
+                    <p>
+                      <strong>RESPONDED: </strong>
+                      {contact.isResponded
+                        ? contact.deliveredAt.substring(0, 10)
+                        : "No"}
+                    </p>
+                    <Button type="button" variant="light" onClick={() => {}}>
+                      Respond
+                    </Button>
+                  </div>
+                </div>
+              </>
             ))}
-          </tbody>
-        </table>
+            <hr></hr>
+          </Col>
+        </Row>
       )}
     </div>
   );
-}
+};
