@@ -1,4 +1,5 @@
-import { modelOptions, prop, getModelForClass } from "@typegoose/typegoose";
+import { modelOptions, prop, getModelForClass, Ref } from "@typegoose/typegoose";
+import { User } from "./userModel";
 
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class Contact {
@@ -21,8 +22,10 @@ export class Contact {
   })
   public email!: string;
 
-  @prop({
-  })
+  @prop({ ref: User })
+  public user?: Ref<User>;
+
+  @prop({})
   public text!: string;
 
   @prop({ default: false })
@@ -30,6 +33,12 @@ export class Contact {
 
   @prop({ default: Date.now })
   public date!: Date;
+
+  @prop({ required: true, default: false })
+  public isResponded!: boolean;
+  @prop()
+  public deliveredAt!: Date;
 }
+
 
 export const ContactModel = getModelForClass(Contact);

@@ -3,6 +3,8 @@ import apiClient from '../apiClient'
 import { UserInfo } from '../types/UserInfo'
 import { User } from "../types/User";
 import { Image } from "../types/image";
+// import { Contact } from "../types/contact";
+import axios from "axios";
 
 export const useSigninMutation = () =>
   useMutation({
@@ -175,4 +177,23 @@ export const useUploadImageMutation = () =>
         })
       ).data,
 
+  });
+export const useUploadEmailMutation = () =>
+  useMutation({
+    mutationFn: async ({
+      fullname,
+      email,
+      text,
+    }: {
+      fullname: string;
+      email: string;
+      text: string;
+    }) =>
+      (
+        await axios.post(`http://localhost:4000/api/email/upload`, {
+          fullname,
+          email,
+          text,
+        })
+      ).data,
   });

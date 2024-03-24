@@ -1,43 +1,55 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import Slider from "../Components/Slider";
 import { IoCall } from "react-icons/io5";
 import { ImLocation2 } from "react-icons/im";
 import { FcAlarmClock } from "react-icons/fc";
 import { Helmet } from "react-helmet-async";
 import { Button, Form } from "react-bootstrap";
-import axios from "axios";
+
+import { Link, useNavigate } from "react-router-dom";
+import { useUploadEmailMutation } from "../hooks/userHooks";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { ApiError } from "../types/ApiError";
+import { getError } from "../utils";
+import LoadingBox from "../Components/LoadingBox";
+import { Store } from "../Store";
 
 const ContactUs = () => {
+   const { state } = useContext(Store);
+   const { userInfo } = state;
+      const navigate = useNavigate();
+
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
 
-  const submitHandler = async () => {
-    const navigate = useNavigate();
-    try {
-      //  await axios.post("http://localhost:4000/api/email", {
-      //    name,
-      //    email,
-      //    text,
-      //  });
-      await axios.post(
-        "https://mern-choir-backend.vercel.app/api/email/upload",
+     const { mutateAsync: mailUpload, isPending } = useUploadEmailMutation();
 
-        {
-          fullname,
-          email,
-          text,
-        }
-      );
-    
-      toast.success(
-        "Thank you for contacting us, we'll get back to you shortly"
-      );
-      // navigate("/");
+  const submitHandler = async (e: FormEvent) => {
+  e.preventDefault();
+
+     if (!fullname) {
+       toast.error("Please Enter Your Full Name");
+       return;
+     }
+     if (!email) {
+       toast.error("Please Enter Your E-Mail Address");
+       return;
+     }
+     if (!text) {
+       toast.error("Please, Enter your reason for contacting us");
+       return;
+     }
+    try {
+      await mailUpload({
+        fullname,
+        email,
+        text,
+      })
+      toast.success("Thanks for contacting us, we'll get back to you shortly");
+      navigate("/");
     } catch (error) {
-      console.log(error);
+       toast.error(getError(error as ApiError));
     }
   };
   useEffect(() => {
@@ -87,6 +99,17 @@ const ContactUs = () => {
         >
           <Form onSubmit={submitHandler} className="w-75">
             <Form.Label style={{ textAlign: "center", display: "block" }}>
+              {userInfo?.isAdmin && (
+                <Button className="w-75 d-flex" variant="dark" type="button">
+                  <Link
+                    to="/contactHistory"
+                    className="text-decoration-none text-dark text-white "
+                  >
+                    CONTACTS FOLDER &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+                  </Link>
+                </Button>
+              )}
+
               <h4 style={{ marginTop: "40px", textAlign: "center" }}>
                 <strong>CONTACT US</strong>
               </h4>
@@ -115,10 +138,10 @@ const ContactUs = () => {
               />
             </Form.Group>
             <div className="mb-3 w-100 align-items-center justify-content-center d-flex ">
-              <Button type="submit" className="w-75">
+              <Button type="submit" disabled={isPending} className="w-75">
                 Submit
               </Button>
-              {/* {isPending && <LoadingBox />} */}
+              {isPending && <LoadingBox />}
             </div>
           </Form>
         </div>

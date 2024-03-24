@@ -1,13 +1,11 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import mongoose from "mongoose";
 const cors = require("cors");
 import { seedRouter } from "./routers/seedRouter";
 import { eventRouter } from "./routers/eventRouter";
-import { UserModel } from "./models/userModel";
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const userRouter = require("./routers/userRouter");
-import asyncHandler from "express-async-handler";
 import { mailRouter } from "./routers/emailRouter";
 
 const app = express();

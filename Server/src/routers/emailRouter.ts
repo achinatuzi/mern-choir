@@ -1,12 +1,23 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { Contact, ContactModel } from "../models/mailModel";
+import { admin } from "../utils";
 
 dotenv.config();
 
 export const mailRouter = express.Router();
+
+mailRouter.get(
+  "/",
+  admin,
+  asyncHandler(async (req, res) => {
+    const data = await ContactModel.find({});
+    console.log(data);
+    res.json(data);
+  })
+);
 
 mailRouter.post(
   "/",
@@ -41,26 +52,20 @@ mailRouter.post(
 
 mailRouter.post(
   "/upload",
-  asyncHandler(async (req, res) => {
-    const data = await ContactModel.create({
+  asyncHandler(async (req: Request, res: Response) => {
+    const contact = await ContactModel.create({
       _id: req.body._id,
       fullname: req.body.fullname,
       email: req.body.email,
       text: req.body.text,
     } as Contact);
+    console.log(contact);
     res.json({
-      _id: data._id,
-      fullname: data.fullname,
-      email: data.email,
-      text: data.text,
+      _id: contact._id,
+      fullname: contact.fullname,
+      email: contact.email,
+      text: contact.text,
     });
+    console.log(contact);
   })
 );
-
-mailRouter.get(
-    '/',
-    asyncHandler(async(req, res) => {
-        const data = await ContactModel.find({});
-        res.json({data})
-    })
-)

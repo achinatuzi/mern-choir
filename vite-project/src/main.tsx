@@ -27,6 +27,7 @@ import ContactUs from "./Pages/ContactUs";
 import SupportUs from "./Pages/SupportUs";
 import UpdateEvent from "./Pages/UpdateEvent";
 import UploadEvent from "./Pages/UploadEvent";
+import { ContactHistory } from "./Pages/ContactHistory";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
       <Route path="support" element={<SupportUs />} />
       <Route path="uploadEvent" element={<UploadEvent />} />
       <Route path="/updateEvent/:_id" element={<UpdateEvent />} />
+      <Route path="/contactHistory" element={<ContactHistory />} />
     </Route>
   )
 );

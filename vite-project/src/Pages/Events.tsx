@@ -14,12 +14,11 @@ import Expandable from "../Components/Expandable";
 import gvc from "../assets/image/gvc.jpg";
 import { Store } from "../Store";
 
-
 const Events = () => {
   const { data: events, isLoading, error } = useGetEventsQuery();
 
-    const { state } = useContext(Store);
-    const { userInfo } = state;
+  const { state } = useContext(Store);
+  const { userInfo } = state;
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -119,7 +118,7 @@ const Events = () => {
                             </p>
                           </span>
                           {userInfo?.isAdmin && (
-                            <Button>
+                            <Button variant="light" type="button">
                               <Link
                                 to={`/updateEvent/${event._id}`}
                                 className="nav-link"
