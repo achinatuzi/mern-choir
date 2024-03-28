@@ -28,11 +28,7 @@ export class User {
   })
   public surName!: string;
 
-  @prop({
-    trim: true,
-    maxlength: [30, "Other Name cannot exceed 30 characters"],
-    minlength: [3, "Other Name should have more than 4 characters"],
-  })
+  @prop({ })
   public otherName!: string;
 
   @prop({ required: [true, "Please Select Your Voice"] })
