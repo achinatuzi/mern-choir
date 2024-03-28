@@ -73,8 +73,7 @@ const Member = () => {
                     >
                       Other Name:{" "}
                       <strong>
-                        {user.otherName[0].toUpperCase() +
-                          user.otherName.substring(1).toLowerCase()}
+                        {user.otherName}
                       </strong>
                     </ListGroup.Item>
                   </>
@@ -126,8 +125,7 @@ const Member = () => {
                     >
                       Office Holding/Held:{" "}
                       <strong>
-                        {user.post[0].toUpperCase() +
-                          user.post.substring(1).toLowerCase()}
+                        {user.post}
                       </strong>
                     </ListGroup.Item>
                  
