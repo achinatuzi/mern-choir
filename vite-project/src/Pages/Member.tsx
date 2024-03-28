@@ -71,10 +71,7 @@ const Member = () => {
                     <ListGroup.Item
                       style={{ backgroundColor: "rgb(255, 222, 173)" }}
                     >
-                      Other Name:{" "}
-                      <strong>
-                        {user.otherName}
-                      </strong>
+                      Other Name: <strong>{user.otherName}</strong>
                     </ListGroup.Item>
                   </>
                 ) : (
@@ -119,20 +116,15 @@ const Member = () => {
                 >
                   Date Joined: <strong>{joinedDate}</strong>
                 </ListGroup.Item>
-              
-                    <ListGroup.Item
-                      style={{ backgroundColor: "rgb(255, 222, 173)" }}
-                    >
-                      Office Holding/Held:{" "}
-                      <strong>
-                        {user.post}
-                      </strong>
-                    </ListGroup.Item>
-                 
+                <ListGroup.Item
+                  style={{ backgroundColor: "rgb(255, 222, 173)" }}
+                >
+                  Office Holding/Held: <strong>{user.post}</strong>
+                </ListGroup.Item>
                 {user.level ? (
                   <>
                     <ListGroup.Item
-                      style={{ backgroundColor: "rgb(255, 222, 173)" }}
+                      style={{ backgroundColor: "rgb(233, 220, 201)" }}
                     >
                       Position: <strong>Student</strong>
                     </ListGroup.Item>
